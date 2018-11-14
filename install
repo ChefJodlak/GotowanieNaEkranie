@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Squid Installer
+# Author: ChefJodla
+# Email: jodlaksde@gmail.com
+# Github: https://github.com/ChefJodlak/GotowanieNaEkranie
+
+yum -y update
+yum install -y squid 
+yum install httpd-tools -y
+squid -z
+chkconfig squid on
+read -e -p "Your desired username: " usrn
+touch /etc/squid/squid_access; htpasswd /etc/squid/squid_access $usrn
+service squid start
