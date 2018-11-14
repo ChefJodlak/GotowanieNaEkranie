@@ -8,7 +8,7 @@
 yum -y update
 yum install -y squid 
 yum install httpd-tools -y
-wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate;;
+wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
 squid -z
 chkconfig squid on
 read -e -p "Your desired username: " usrn
