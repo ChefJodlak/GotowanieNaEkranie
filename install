@@ -11,6 +11,5 @@ yum install httpd-tools -y
 wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
 squid -z
 chkconfig squid on
-read -e -p "Your desired username: " usrn
-touch /etc/squid/squid_access; htpasswd /etc/squid/squid_access $usrn
+touch /etc/squid/squid_access; htpasswd /etc/squid/squid_access admin admin
 service squid start
