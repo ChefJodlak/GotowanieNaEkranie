@@ -22,7 +22,7 @@ sudo yum install httpd-tools -y
 wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
 sudo squid -z
 sudo chkconfig squid on
-sudo touch /etc/squid/squid_access; htpasswd /etc/squid/squid_access admin admin
+touch /etc/squid/squid_access; htpasswd /etc/squid/squid_access admin
 sudo service squid start
 
 yes | gcloud compute disks snapshot proxy --snapshot-names=proxysnapshot --zone=europe-west4-a
