@@ -28,10 +28,11 @@ sudo touch /etc/squid/squid_access; htpasswd /etc/squid/squid_access $usrn $usrp
 sudo service squid start
 
 yes | gcloud compute disks snapshot proxy --snapshot-names=proxysnapshot --zone=europe-west4-a
-yes | gcloud compute disks create proxymain --source-snapshot=proxysnapshot --zone=europe-west4-a
+
 for (( c=1; c<=$n; c++ ))
 do  
-   yes | gcloud compute instances create proxy$c --disk name=proxymain --tags=http-server,https-server --zone=europe-west4-a 
+	yes | gcloud compute disks create proxy$c --source-snapshot=proxysnapshot --zone=europe-west4-a
+   yes | gcloud compute instances create proxy$c --disk name=proxy$c --tags=http-server,https-server --zone=europe-west4-a 
 done
 
 
