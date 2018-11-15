@@ -8,11 +8,12 @@
 
 #read -e -p "Give me your email address: " mail
 read -e -p "How many Servers do you want to create?: " n
+read -e -p "Jak chcesz zeby sie serwery nazywaly(tylko male litery, cyfry, bez spacji)?: " name
 
 for (( c=1; c<=$n; c++ ))
 do  
 	yes | gcloud compute disks create proxyy$c --source-snapshot=proxy --zone=europe-west4-a
-   yes | gcloud compute instances create proxy$c --disk name=proxyy$c,boot=yes --tags=http-server,https-server --zone=europe-west4-a 
+   yes | gcloud compute instances create $name$c --disk name=proxyy$c,boot=yes --tags=http-server,https-server --zone=europe-west4-a 
 done
 
 
