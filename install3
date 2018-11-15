@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Squid Installer
+# Author: ChefJodla
+# Email: jodlaksde@gmail.com
+# Github: https://github.com/ChefJodlak/GotowanieNaEkranie
+
+
+#read -e -p "Give me your email address: " mail
+read -e -p "How many Servers do you want to create?: " n
+
+for (( c=1; c<=$n; c++ ))
+do  
+	yes | gcloud compute disks create proxyy$c --source-snapshot=proxy --zone=europe-west4-a
+   yes | gcloud compute instances create proxy$c --disk name=proxyy$c,boot=yes --tags=http-server,https-server --zone=europe-west4-a 
+done
+
+
