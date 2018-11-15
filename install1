@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Squid Installer
+# Author: ChefJodla
+# Email: jodlaksde@gmail.com
+# Github: https://github.com/ChefJodlak/GotowanieNaEkranie
+
+
+read -e -p "*******************************" 
+read -e -p "Give me your email address: " mail
+read -e -p "Give me a desired LOGIN to PROXY server: " usrn
+read -e -p "Give me a desired PASSWORD to PROXY server: " usrp
+read -e -p "How many Servers do you want to create?: " n
+
+gcloud config set account $mail
+gcloud auth login 
+gcloud compute disks create proxy1 --size=10GB --zone=europe-west4-a
+hostname=$(hostname)
+gcloud compute instances attach-disk $hostname  --disk proxy --zone europe-west4-a
+sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,discard /dev/sdb
+
+yum -y update
+yum install -y squid 
+yum install httpd-tools -y
+wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
+squid -z
+chkconfig squid on
+touch /etc/squid/squid_access; htpasswd /etc/squid/squid_access $usrn $usrp
+service squid start
+
+gcloud compute disks snapshot proxy --snapshot-names=proxy --zone=europe-west4-a
+gcloud compute disks create proxy2 --source-snapshot=proxy
+for (( c=1; c<=$n; c++ ))
+do  
+   gcloud compute instances create Proxy$c --disk name=proxy2 --tags=http-server,https-server --zone=europe-west4-a,  boot=yes 
+done
+
+
