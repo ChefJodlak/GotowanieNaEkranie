@@ -18,20 +18,20 @@ hostname=$(hostname)
 yes | gcloud compute instances attach-disk $hostname  --disk proxy --zone europe-west4-a
 sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,discard /dev/sdb
 
-yum -y update
-yum install -y squid 
-yum install httpd-tools -y
+sudo yum -y update
+sudo yum install -y squid 
+sudo yum install httpd-tools -y
 wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
-squid -z
-chkconfig squid on
-touch /etc/squid/squid_access; htpasswd /etc/squid/squid_access $usrn $usrp
-service squid start
+sudo squid -z
+sudo chkconfig squid on
+sudo touch /etc/squid/squid_access; htpasswd /etc/squid/squid_access $usrn $usrp
+sudo service squid start
 
-gcloud compute disks snapshot proxy --snapshot-names=proxy_snapshot --zone=europe-west4-a
-gcloud compute disks create proxy_main --source-snapshot=proxy_snapshot --zone=europe-west4-a
+yes | gcloud compute disks snapshot proxy --snapshot-names=proxy_snapshot --zone=europe-west4-a
+yes | gcloud compute disks create proxy_main --source-snapshot=proxy_snapshot --zone=europe-west4-a
 for (( c=1; c<=$n; c++ ))
 do  
-   gcloud compute instances create Proxy$c --disk name=proxy2, boot=yes --tags=http-server,https-server --zone=europe-west4-a 
+   yes | gcloud compute instances create Proxy$c --disk name=proxy2, boot=yes --tags=http-server,https-server --zone=europe-west4-a 
 done
 
 
