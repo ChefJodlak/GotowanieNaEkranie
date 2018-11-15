@@ -11,10 +11,10 @@ read -e -p "How many Servers do you want to create?: " n
 
 #gcloud config set account $mail
 #gcloud auth login 
-yes | gcloud compute disks create proxy --size=10GB --zone=europe-west4-a
+#yes | gcloud compute disks create proxy --size=10GB --zone=europe-west4-a
 hostname=$(hostname)
-yes | gcloud compute instances attach-disk $hostname  --disk proxy --zone europe-west4-a
-sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,discard /dev/sdb
+#yes | gcloud compute instances attach-disk $hostname  --disk proxy --zone europe-west4-a
+#sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,discard /dev/sdb
 
 sudo yum -y update
 sudo yum install -y squid 
@@ -25,12 +25,12 @@ sudo chkconfig squid on
 touch /etc/squid/squid_access; htpasswd /etc/squid/squid_access admin
 sudo service squid start
 
-yes | gcloud compute disks snapshot proxy --snapshot-names=proxysnapshot --zone=europe-west4-a
+yes | gcloud compute disks snapshot $hostname --snapshot-names=proxysnapshot --zone=europe-west4-a
 
 for (( c=1; c<=$n; c++ ))
 do  
 	yes | gcloud compute disks create proxyy$c --source-snapshot=proxysnapshot --zone=europe-west4-a
-   yes | gcloud compute instances create proxy$c --disk name=proxyy$c --tags=http-server,https-server --zone=europe-west4-a 
+   yes | gcloud compute instances create proxy$c --disk name=proxyy$c,boot=yes --tags=http-server,https-server --zone=europe-west4-a 
 done
 
 
