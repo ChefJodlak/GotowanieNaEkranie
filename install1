@@ -6,8 +6,13 @@
 # Github: https://github.com/ChefJodlak/GotowanieNaEkranie
 
 
-yes | yum install Figlet
-figlet Automatic Proxy by Jodla
+echo "    _         _                        _   _        ____                      "
+echo "   / \  _   _| |_ ___  _ __ ___   __ _| |_(_) ___  |  _ \ _ __ _____  ___   _ "
+echo "  / _ \| | | | __/ _ \| '_ ` _ \ / _` | __| |/ __| | |_) | '__/ _ \ \/ / | | |"
+echo " / ___ \ |_| | || (_) | | | | | | (_| | |_| | (__  |  __/| | | (_) >  <| |_| |"
+echo "/_/   \_\__,_|\__\___/|_| |_| |_|\__,_|\__|_|\___| |_|   |_|  \___/_/\_\\__, |"
+echo "                                                                        |___/ "
+
 read -e -p "Give me your email address: " mail
 read -e -p "Give me a desired LOGIN to PROXY server: " usrn
 read -e -p "Give me a desired PASSWORD to PROXY server: " usrp
