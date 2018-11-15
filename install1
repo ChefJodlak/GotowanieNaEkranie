@@ -31,7 +31,7 @@ yes | gcloud compute disks snapshot proxy --snapshot-names=proxysnapshot --zone=
 yes | gcloud compute disks create proxymain --source-snapshot=proxysnapshot --zone=europe-west4-a
 for (( c=1; c<=$n; c++ ))
 do  
-   yes | gcloud compute instances create Proxy$c --disk name=proxy2, boot=yes --tags=http-server,https-server --zone=europe-west4-a 
+   yes | gcloud compute instances create Proxy$c --disk name=proxy2 --tags=http-server,https-server --zone=europe-west4-a 
 done
 
 
