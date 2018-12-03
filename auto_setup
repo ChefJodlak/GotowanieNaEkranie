@@ -1,0 +1,225 @@
+#!/bin/bash
+# Squid Installer
+# Author: ChefJodla
+# Email: jodlaksde@gmail.com
+# Github: https://github.com/ChefJodlak/GotowanieNaEkranie
+
+read -e -p "How many Servers do you want to create per region?(there are 15 EU regions): " n
+read -e -p "Jak chcesz zeby sie serwery nazywaly(tylko male litery, cyfry, bez spacji)?: " name
+
+for (( c=1; c<= 15*n; c++ ))
+do  
+	if [ $c -le $n ]
+	then
+		yes | gcloud compute instances create $name$c --machine-type="f1-micro" --image-family="centos-6" --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west1-b --metadata startup-script='#! /bin/bash
+
+		sudo su
+		yum -y update
+		yum install -y squid 
+		yum install httpd-tools -y
+		wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
+		squid -z
+		chkconfig squid on
+		service squid start
+		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
+		'
+	elif [ $c -le 2$n ]
+	then
+				yes | gcloud compute instances create $name$c --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west1-c --metadata startup-script='#! /bin/bash
+
+		sudo su
+		yum -y update
+		yum install -y squid 
+		yum install httpd-tools -y
+		wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
+		squid -z
+		chkconfig squid on
+		service squid start
+		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
+		'
+	elif [ $c -le 3$n ]
+	then
+				yes | gcloud compute instances create $name$c --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west1-d --metadata startup-script='#! /bin/bash
+
+		sudo su
+		yum -y update
+		yum install -y squid 
+		yum install httpd-tools -y
+		wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
+		squid -z
+		chkconfig squid on
+		service squid start
+		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
+		'
+	elif [ $c -le 4$n ]
+	then
+				yes | gcloud compute instances create $name$c --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west2-a --metadata startup-script='#! /bin/bash
+
+		sudo su
+		yum -y update
+		yum install -y squid 
+		yum install httpd-tools -y
+		wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
+		squid -z
+		chkconfig squid on
+		service squid start
+		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
+		'
+	elif [ $c -le 5$n ]
+	then
+				yes | gcloud compute instances create $name$c --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west2-b --metadata startup-script='#! /bin/bash
+
+		sudo su
+		yum -y update
+		yum install -y squid 
+		yum install httpd-tools -y
+		wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
+		squid -z
+		chkconfig squid on
+		service squid start
+		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
+		'
+	elif [ $c -le 6$n ]
+	then
+				yes | gcloud compute instances create $name$c --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west2-c --metadata startup-script='#! /bin/bash
+
+		sudo su
+		yum -y update
+		yum install -y squid 
+		yum install httpd-tools -y
+		wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
+		squid -z
+		chkconfig squid on
+		service squid start
+		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
+		'
+	elif [ $c -le 7$n ]
+	then
+				yes | gcloud compute instances create $name$c --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west3-a --metadata startup-script='#! /bin/bash
+
+		sudo su
+		yum -y update
+		yum install -y squid 
+		yum install httpd-tools -y
+		wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
+		squid -z
+		chkconfig squid on
+		service squid start
+		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
+		'
+	elif [ $c -le 8$n ]
+	then
+				yes | gcloud compute instances create $name$c --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west3-b --metadata startup-script='#! /bin/bash
+
+		sudo su
+		yum -y update
+		yum install -y squid 
+		yum install httpd-tools -y
+		wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
+		squid -z
+		chkconfig squid on
+		service squid start
+		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
+		'
+	elif [ $c -le 9$n ]
+	then
+				yes | gcloud compute instances create $name$c --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west3-c --metadata startup-script='#! /bin/bash
+
+		sudo su
+		yum -y update
+		yum install -y squid 
+		yum install httpd-tools -y
+		wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
+		squid -z
+		chkconfig squid on
+		service squid start
+		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
+		'
+	elif [ $c -le 10$n ]
+	then
+				yes | gcloud compute instances create $name$c --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west4-a --metadata startup-script='#! /bin/bash
+
+		sudo su
+		yum -y update
+		yum install -y squid 
+		yum install httpd-tools -y
+		wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
+		squid -z
+		chkconfig squid on
+		service squid start
+		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
+		'
+	elif [ $c -le 11$n ]
+	then
+				yes | gcloud compute instances create $name$c --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west4-b --metadata startup-script='#! /bin/bash
+
+		sudo su
+		yum -y update
+		yum install -y squid 
+		yum install httpd-tools -y
+		wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
+		squid -z
+		chkconfig squid on
+		service squid start
+		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
+		'
+	elif [ $c -le 12$n ]
+	then
+				yes | gcloud compute instances create $name$c --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west4-c --metadata startup-script='#! /bin/bash
+
+		sudo su
+		yum -y update
+		yum install -y squid 
+		yum install httpd-tools -y
+		wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
+		squid -z
+		chkconfig squid on
+		service squid start
+		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
+		'
+	elif [ $c -le 13$n ]
+	then
+				yes | gcloud compute instances create $name$c --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-north1-a --metadata startup-script='#! /bin/bash
+
+		sudo su
+		yum -y update
+		yum install -y squid 
+		yum install httpd-tools -y
+		wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
+		squid -z
+		chkconfig squid on
+		service squid start
+		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
+		'
+	elif [ $c -le 14$n ]
+	then
+				yes | gcloud compute instances create $name$c --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-north1-b --metadata startup-script='#! /bin/bash
+
+		sudo su
+		yum -y update
+		yum install -y squid 
+		yum install httpd-tools -y
+		wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
+		squid -z
+		chkconfig squid on
+		service squid start
+		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
+		'
+	elif [ $c -le 15$n ]
+	then
+				yes | gcloud compute instances create $name$c --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-north1-c --metadata startup-script='#! /bin/bash
+
+		sudo su
+		yum -y update
+		yum install -y squid 
+		yum install httpd-tools -y
+		wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
+		squid -z
+		chkconfig squid on
+		service squid start
+		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
+		'
+	fi
+done
+
+
