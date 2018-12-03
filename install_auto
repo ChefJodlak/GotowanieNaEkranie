@@ -20,7 +20,7 @@
 
 for (( c=1; c<=16; c++ ))
 do  
-	if(c -le 8); then
+	if($c -le 8); then
 		yes | gcloud compute instances create proxyproxy$c --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west4-a --metadata startup-script='#! /bin/bash
 
 		sudo su
@@ -33,7 +33,7 @@ do
 		service squid start
 		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
 		'
-	elif (c -le 16) then
+	elif ($c -le 16) then
 				yes | gcloud compute instances create proxyproxy$c --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west4-b --metadata startup-script='#! /bin/bash
 
 		sudo su
