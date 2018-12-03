@@ -6,7 +6,7 @@
 
 read -e -p "Jak chcesz zeby sie serwery nazywaly(tylko male litery, cyfry, bez spacji)?: " name
 
-for (( c=1; c<= 15*n; c++ ))
+for (( c=1; c<= 40; c++ ))
 do  
 	if [ $c -le 3 ]
 	then
