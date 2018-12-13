@@ -23,7 +23,7 @@ do
 		chkconfig squid on
 		service squid start
 		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
-		' &
+		' 
 	elif [ $c -le $(((max /12)*2)) ]
 	then
 		yes | gcloud compute instances create $name$c --machine-type="f1-micro" --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west1-c --metadata startup-script='#! /bin/bash
@@ -37,7 +37,7 @@ do
 		chkconfig squid on
 		service squid start
 		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
-		' &
+		' 
 	elif [ $c -le $(((max /12)*3)) ]
 	then
 		yes | gcloud compute instances create $name$c --machine-type="f1-micro" --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west1-d --metadata startup-script='#! /bin/bash
@@ -51,7 +51,7 @@ do
 		chkconfig squid on
 		service squid start
 		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
-		' &
+		' 
 	elif [ $c -le $(((max /12)*4)) ]
 	then
 		yes | gcloud compute instances create $name$c --machine-type="f1-micro" --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west2-a --metadata startup-script='#! /bin/bash
@@ -79,7 +79,7 @@ do
 		chkconfig squid on
 		service squid start
 		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
-		' &
+		' 
 	elif [ $c -le $(((max /12)*6)) ]
 	then
 		yes | gcloud compute instances create $name$c --machine-type="f1-micro" --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west2-c --metadata startup-script='#! /bin/bash
@@ -93,7 +93,7 @@ do
 		chkconfig squid on
 		service squid start
 		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
-		' &
+		' 
 	elif [ $c -le $(((max /12)*7)) ]
 	then
 		yes | gcloud compute instances create $name$c --machine-type="f1-micro" --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west3-a --metadata startup-script='#! /bin/bash
@@ -107,7 +107,7 @@ do
 		chkconfig squid on
 		service squid start
 		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
-		' &
+		' 
 	elif [ $c -le $(((max /12)*8)) ]
 	then
 		yes | gcloud compute instances create $name$c --machine-type="f1-micro" --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west3-b --metadata startup-script='#! /bin/bash
@@ -121,7 +121,7 @@ do
 		chkconfig squid on
 		service squid start
 		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
-		' &
+		' 
 	elif [ $c -le $(((max /12)*9)) ]
 	then
 		yes | gcloud compute instances create $name$c --machine-type="f1-micro" --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west3-c --metadata startup-script='#! /bin/bash
@@ -135,7 +135,7 @@ do
 		chkconfig squid on
 		service squid start
 		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
-		' &
+		' 
 	elif [ $c -le $(((max /12)*10)) ]
 	then
 		yes | gcloud compute instances create $name$c --machine-type="f1-micro" --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west4-a --metadata startup-script='#! /bin/bash
@@ -149,7 +149,7 @@ do
 		chkconfig squid on
 		service squid start
 		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
-		' &
+		' 
 	elif [ $c -le $(((max /12)*11)) ]
 	then
 		yes | gcloud compute instances create $name$c --machine-type="f1-micro" --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west4-b --metadata startup-script='#! /bin/bash
@@ -163,7 +163,7 @@ do
 		chkconfig squid on
 		service squid start
 		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
-		' &
+		' 
 	elif [ $c -le $(((max /12)*12)) ]
 	then
 		yes | gcloud compute instances create $name$c --machine-type="f1-micro" --image-family=centos-6 --image-project=centos-cloud --tags=http-server,https-server --zone=europe-west4-c --metadata startup-script='#! /bin/bash
@@ -177,7 +177,7 @@ do
 		chkconfig squid on
 		service squid start
 		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
-		' &
+		' 
 	fi
 done
 
