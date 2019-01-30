@@ -13,7 +13,6 @@ do
 	if [ $c -le $((max /9)) ]
 	then
 		zone=europe-west1-b
-		
 	elif [ $c -le $(((max /9)*2)) ]
 	then
 		zone=europe-west1-c
@@ -41,16 +40,26 @@ do
 	fi
 	yes | gcloud compute instances create $name$c --machine-type="f1-micro" --image-family="centos-6" --image-project=centos-cloud --tags=http-server,https-server --zone=$zone --metadata startup-script='#! /bin/bash
 
-		sudo su
-		yum -y update
-		yum install -y squid 
-		yum install httpd-tools -y
-		wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config.conf --no-check-certificate
-		squid -z
-		chkconfig squid on
-		service squid start
-		touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
-		' 
+yum -y update
+wget https://www.openssl.org/source/openssl-1.0.2q.tar.gz
+tar -xvzf openssl-1.0.2q.tar.gz
+cd openssl-1.0.2q
+./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl
+make install
+yum install -y squid 
+yum install httpd-tools -y
+wget -O /etc/squid/squid.conf https://raw.githubusercontent.com/ChefJodlak/GotowanieNaEkranie/master/config1.conf --no-check-certificate
+squid -z
+chkconfig squid on
+cd /etc/squid
+mkdir ssl_cert
+chown squid:squid ssl_cert
+chmod 700 ssl_cert
+cd ssl_cert
+openssl req -new -newkey rsa:2048 -sha256 -days 365 -nodes -x509 -extensions v3_ca -keyout myCA.pem  -out myCA.pem -subj "/C=PL/ST=Polska/L=Mazowieckie/O=Test/OU=Test/CN=google.com/emailAddress=test@test.com"
+service squid restart
+touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
+'&
 done
 
 
