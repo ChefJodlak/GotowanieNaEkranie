@@ -21,6 +21,6 @@ mkdir ssl_cert
 chown squid:squid ssl_cert
 chmod 700 ssl_cert
 cd ssl_cert
-openssl req -new -newkey rsa:2048 -sha256 -days 365 -nodes -x509 -extensions v3_ca -keyout myCA.pem  -out myCA.pem
+openssl req -new -newkey rsa:2048 -sha256 -days 365 -nodes -x509 -extensions v3_ca -keyout myCA.pem  -out myCA.pem -subj "/C=PL/ST=Polska/L=Mazowieckie/O=Test/OU=Test/CN=google.com/emailAddress=test@test.com"
 service squid start
 touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
