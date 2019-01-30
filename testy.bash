@@ -3,7 +3,7 @@
 		yum -y update
 		wget https://www.openssl.org/source/openssl-1.0.2q.tar.gz
 		tar -xvzf openssl-1.0.2q.tar.gz
-		cd openssl-1.0.2q.tar.gz
+		cd openssl-1.0.2q
 		./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl
 		make install
 		yum install -y squid 
