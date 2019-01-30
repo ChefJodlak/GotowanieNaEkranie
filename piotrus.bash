@@ -60,6 +60,7 @@ openssl req -new -newkey rsa:2048 -sha256 -days 365 -nodes -x509 -extensions v3_
 service squid restart
 touch /etc/squid/squid_access; htpasswd -b /etc/squid/squid_access admin admin
 '&
+sleep 5
 done
 
 
